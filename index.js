@@ -36,5 +36,28 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
 
 
 
-const date = new Date()
-console.log(date.toLocaleTimeString("en-us", {timeStyle: "short"}))
+function getCurrentTime() {
+    const date = new Date()
+    document.getElementById("time").textContent = date.toLocaleTimeString("en-za", {timeStyle: "short"})
+}
+
+setInterval(getCurrentTime, 1000)
+
+navigator.geolocation.getCurrentPosition(position => {
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Weather data not available")
+            }
+            return res.json()
+        })
+        .then(data => {
+            console.log(data)
+        })
+        .catch(err => console.error(err))
+});
+
+async function getLocation() {
+    const position = await navigator.geolocation.getCurrentPosition()
+    console.log(position)
+}
