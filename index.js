@@ -28,8 +28,8 @@ fetch("https://api.coingecko.com/api/v3/coins/dogecoin")
 
             document.getElementById("crypto").innerHTML += `
             <p>🎯: ${data.market_data.current_price.usd}</p>
-            <p>👆: zaka</p>
-            <p>👇: zaka</p>
+            <p></p>
+            <p></p>
             `
         })
         .catch(err => console.error(err))
