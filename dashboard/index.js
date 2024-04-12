@@ -64,8 +64,3 @@ navigator.geolocation.getCurrentPosition(position => {
         })
         .catch(err => console.error(err));
 });
-
-async function getLocation() {
-    const position = await navigator.geolocation.getCurrentPosition()
-    console.log(position)
-}
