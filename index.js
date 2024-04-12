@@ -43,19 +43,26 @@ function getCurrentTime() {
 
 setInterval(getCurrentTime, 1000)
 
+const apiKey = '9b3663ad464e7cd15880d5ff666579aa';
+
 navigator.geolocation.getCurrentPosition(position => {
-    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial`)
+    fetch(`https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=imperial&appid=${apiKey}`)
         .then(res => {
             if (!res.ok) {
-                throw Error("Weather data not available")
+                throw Error("Weather data not available");
             }
-            return res.json()
+            return res.json();
         })
         .then(data => {
-            //console.log(data)
-            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}2x.png`
+            console.log(data)
+            const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}2x.png`;
+            document.getElementById("weather").innerHTML = `
+                <img src=${iconUrl} />
+                <pclass="weather-temp">${Math.round(data.main.temp)}º</pclass=>
+                <p class="weather-city">${data.name}</p>
+            `
         })
-        .catch(err => console.error(err))
+        .catch(err => console.error(err));
 });
 
 async function getLocation() {
