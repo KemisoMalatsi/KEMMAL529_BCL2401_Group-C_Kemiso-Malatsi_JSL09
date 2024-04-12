@@ -15,3 +15,12 @@ main {
     flex-direction: column;
     justify-content: space-between;
 }
+
+div.top {
+    display: flex;
+    justify-content: space-between;
+}
+h1 {
+    border: 3px dashed red;
+    text-align: center;
+}
